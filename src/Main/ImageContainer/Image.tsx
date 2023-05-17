@@ -1,11 +1,13 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 
-function Image() {
-  //params: string
+type ImageProps = {
+  imageLink: string;
+};
+
+export const Image: FunctionComponent<ImageProps> = ({ imageLink }) => {
   return (
     <>
-      <div>Img</div>
+      <img src={require(`../../Images/${imageLink}`)} alt="HeaderImage" />
     </>
   );
-}
-export default Image;
+};
