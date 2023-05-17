@@ -7,9 +7,13 @@ import React, {
 
 type InputsProps = {
   setChuckImage: Dispatch<SetStateAction<boolean>>;
+  categories: string[];
 };
 
-export const Inputs: FunctionComponent<InputsProps> = ({ setChuckImage }) => {
+export const Inputs: FunctionComponent<InputsProps> = ({
+  setChuckImage,
+  categories,
+}) => {
   const [impersonator, setImpersonator] = useState("Chuck Norris");
 
   const handleSetImpersonator = (value: string) => {
@@ -30,9 +34,12 @@ export const Inputs: FunctionComponent<InputsProps> = ({ setChuckImage }) => {
   return (
     <>
       <select>
-        <option value="" disabled selected>
+        <option value="1" disabled>
           Categories
         </option>
+        {categories.map((categoryElement, index) => {
+          return <option key={index}>{categoryElement}</option>;
+        })}
       </select>
       <input
         type="text"

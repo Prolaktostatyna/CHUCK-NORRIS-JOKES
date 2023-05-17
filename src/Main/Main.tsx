@@ -1,33 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FunctionComponent, useRef } from "react";
 import { Image } from "./ImageContainer/Image";
 import { Inputs } from "./InputsContainer/Inputs";
 import { Joke } from "./JokeContainer/Joke";
 import Save from "./SaveContainer/Save";
 
-function Main() {
+export const Main: FunctionComponent = () => {
   const [chuckImage, setChuckImage] = useState(true);
   const [joke, setJoke] = useState("");
+  const [categories, setCategories] = useState([]);
+  const dataFetchedRef = useRef(false);
 
   useEffect(() => {
-    const api = async () => {
-      const data = await fetch("https://api.chucknorris.io/jokes/random", {
-        method: "GET",
-      });
-      const jsonData = await data.json();
-
-      setJoke(jsonData.value);
+    if (dataFetchedRef.current) return;
+    dataFetchedRef.current = true;
+    const fetchData = async () => {
+      try {
+        const [resRandom, resCategory] = await Promise.all([
+          fetch("https://api.chucknorris.io/jokes/random").then((res) =>
+            res.json()
+          ),
+          fetch("https://api.chucknorris.io/jokes/categories").then((res) =>
+            res.json()
+          ),
+        ]);
+        console.log(resRandom.value);
+        console.log(resCategory);
+        setJoke(resRandom.value);
+        setCategories(resCategory);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
     };
-
-    api();
+    fetchData();
   }, []);
 
   return (
     <>
       <Image imageLink={chuckImage ? "Chuck Norris.JPG" : "Impersonator.JPG"} />
       <Joke joke={joke} />
-      <Inputs setChuckImage={setChuckImage} />
+      <Inputs setChuckImage={setChuckImage} categories={categories} />
       <Save />
     </>
   );
-}
-export default Main;
+};
