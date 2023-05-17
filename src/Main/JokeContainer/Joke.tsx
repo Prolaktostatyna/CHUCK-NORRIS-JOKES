@@ -1,11 +1,14 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 
-function Joke() {
+type JokeProps = {
+  joke: string;
+};
+
+export const Joke: FunctionComponent<JokeProps> = ({ joke }) => {
   //params: string
   return (
     <>
-      <p>Tutaj zarty</p>
+      <p>{joke}</p>
     </>
   );
-}
-export default Joke;
+};
