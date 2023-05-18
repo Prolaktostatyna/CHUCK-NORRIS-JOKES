@@ -48,7 +48,11 @@ export const Inputs: FunctionComponent<InputsProps> = ({
     }
   };
 
-  async function fetchData(categoryArg: string, impersonatorArg: string) {
+  //Create reusable async/await function:
+  async function fetchData(
+    categoryArg: string,
+    impersonatorArg: string
+  ): Promise<string> {
     try {
       if (categoryArg !== "") {
         const resp = await fetch(
@@ -86,7 +90,6 @@ export const Inputs: FunctionComponent<InputsProps> = ({
 
   const handleImageChange = async () => {
     setJoke(await fetchData(jokeCategory, impersonator));
-
     if (impersonator === "") {
       setChuckImage(true);
     } else setChuckImage(false);
@@ -134,7 +137,11 @@ export const Inputs: FunctionComponent<InputsProps> = ({
           Draw a random {impersonator} joke
         </button>
       )}
-      <Save jokeCategory={jokeCategory} impersonator={impersonator} />
+      <Save
+        jokeCategory={jokeCategory}
+        impersonator={impersonator}
+        fetchData={fetchData}
+      />
     </>
   );
 };

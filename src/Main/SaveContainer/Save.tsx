@@ -3,14 +3,16 @@ import React, { useState, FunctionComponent } from "react";
 type SaveProps = {
   jokeCategory: string;
   impersonator: string;
+  fetchData: (categoryArg: string, impersonatorArg: string) => Promise<string>;
 };
 
 export const Save: FunctionComponent<SaveProps> = ({
   jokeCategory,
   impersonator,
+  fetchData,
 }) => {
   let minNumber = 0;
-  let maxNumber = 10;
+  let maxNumber = 100;
   const [counter, setCounter] = useState(0);
 
   const handleCounterBtn = (sign: string) => {
@@ -27,15 +29,19 @@ export const Save: FunctionComponent<SaveProps> = ({
     }
   };
 
-  const handleSaveBtn = () => {
+  const handleSaveBtn = async () => {
     const arrayForJoke: string[] = [];
     for (let i = 0; i < counter; i++) {
-      fetch("https://api.chucknorris.io/jokes/random").then((res) =>
-        res.json().then((data) => {
-          arrayForJoke.push(data.value);
-        })
-      );
+      arrayForJoke.push(await fetchData(jokeCategory, impersonator));
     }
+    const fileData = arrayForJoke.join("\r\n");
+
+    const blob = new Blob([fileData], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.download = "Jokes.txt";
+    link.href = url;
+    link.click();
     console.log(arrayForJoke);
   };
 
