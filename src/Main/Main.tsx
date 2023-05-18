@@ -38,7 +38,11 @@ export const Main: FunctionComponent = () => {
     <div>
       <Image imageLink={chuckImage ? "Chuck Norris.JPG" : "Impersonator.JPG"} />
       <Joke joke={joke} />
-      <Inputs setChuckImage={setChuckImage} categories={categories} />
+      <Inputs
+        setChuckImage={setChuckImage}
+        categories={categories}
+        setJoke={setJoke}
+      />
       <Save />
     </div>
   );
