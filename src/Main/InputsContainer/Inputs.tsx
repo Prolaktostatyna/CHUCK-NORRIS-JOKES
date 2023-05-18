@@ -3,6 +3,8 @@ import React, {
   SetStateAction,
   Dispatch,
   useState,
+  useEffect,
+  useRef,
 } from "react";
 
 type InputsProps = {
@@ -15,6 +17,30 @@ export const Inputs: FunctionComponent<InputsProps> = ({
   categories,
 }) => {
   const [impersonator, setImpersonator] = useState("Chuck Norris");
+  const [placeholder, setPlaceholder] = useState("Category");
+  const [categoryFlag, setCategoryFlag] = useState(true);
+
+  const selectRef = useRef<any>(null);
+
+  //   useEffect(() => {
+  //     document.addEventListener("click", (e) => {
+  //       if (!selectRef.current.contains(e.target)) {
+  //         setPlaceholder("Category");
+  //       } else setPlaceholder("Select category");
+  //     });
+  //   }, []);
+
+  useEffect(() => {
+    document.addEventListener("click", (e) => {
+      if (!selectRef.current.contains(e.target) || !categoryFlag) {
+        setCategoryFlag(true);
+        setPlaceholder("Category");
+      } else if (categoryFlag) {
+        setCategoryFlag(false);
+        setPlaceholder("Select category");
+      }
+    });
+  }, [categoryFlag]);
 
   const handleSetImpersonator = (value: string) => {
     if (value === "") {
@@ -25,6 +51,10 @@ export const Inputs: FunctionComponent<InputsProps> = ({
     }
   };
 
+  //   const handleSetPlaceholder = () => {
+  //     setPlaceholder("Select category");
+  //   };
+
   const handleImageChange = () => {
     if (impersonator === "Chuck Norris") {
       setChuckImage(true);
@@ -33,8 +63,8 @@ export const Inputs: FunctionComponent<InputsProps> = ({
 
   return (
     <>
-      <select>
-        <option value="1" disabled>
+      <select ref={selectRef}>
+        <option value="1" label={placeholder} hidden>
           Categories
         </option>
         {categories.map((categoryElement, index) => {

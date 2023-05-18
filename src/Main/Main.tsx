@@ -35,11 +35,11 @@ export const Main: FunctionComponent = () => {
   }, []);
 
   return (
-    <>
+    <div>
       <Image imageLink={chuckImage ? "Chuck Norris.JPG" : "Impersonator.JPG"} />
       <Joke joke={joke} />
       <Inputs setChuckImage={setChuckImage} categories={categories} />
       <Save />
-    </>
+    </div>
   );
 };
