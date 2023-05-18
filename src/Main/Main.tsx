@@ -2,7 +2,6 @@ import React, { useState, useEffect, FunctionComponent, useRef } from "react";
 import { Image } from "./ImageContainer/Image";
 import { Inputs } from "./InputsContainer/Inputs";
 import { Joke } from "./JokeContainer/Joke";
-import Save from "./SaveContainer/Save";
 
 export const Main: FunctionComponent = () => {
   const [chuckImage, setChuckImage] = useState(true);
@@ -23,8 +22,8 @@ export const Main: FunctionComponent = () => {
             res.json()
           ),
         ]);
-        console.log(resRandom.value);
-        console.log(resCategory);
+        // console.log(resRandom.value);
+        // console.log(resCategory);
         setJoke(resRandom.value);
         setCategories(resCategory);
       } catch (error) {
@@ -43,7 +42,6 @@ export const Main: FunctionComponent = () => {
         categories={categories}
         setJoke={setJoke}
       />
-      <Save />
     </div>
   );
 };

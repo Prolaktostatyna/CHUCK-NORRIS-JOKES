@@ -5,7 +5,9 @@ import React, {
   useState,
   useEffect,
   useRef,
+  KeyboardEvent,
 } from "react";
+import { Save } from "../SaveContainer/Save";
 
 type InputsProps = {
   setChuckImage: Dispatch<SetStateAction<boolean>>;
@@ -46,42 +48,54 @@ export const Inputs: FunctionComponent<InputsProps> = ({
     }
   };
 
-  const handleImageChange = () => {
-    console.log(impersonator);
-    if (jokeCategory !== "") {
-      fetch(`https://api.chucknorris.io/jokes/random?category=${jokeCategory}`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (impersonator === "") {
-            setJoke(data.value);
-          } else {
-            let replaceImpresonator = data.value.replaceAll(
-              "Chuck Norris",
-              impersonator
-            );
-            setJoke(replaceImpresonator);
-          }
-        });
-    } else {
-      fetch(`https://api.chucknorris.io/jokes/random`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (impersonator === "") {
-            setJoke(data.value);
-          } else {
-            let replaceImpresonator = data.value.replaceAll(
-              "Chuck Norris",
-              impersonator
-            );
-            setJoke(replaceImpresonator);
-          }
-        });
+  async function fetchData(categoryArg: string, impersonatorArg: string) {
+    try {
+      if (categoryArg !== "") {
+        const resp = await fetch(
+          `https://api.chucknorris.io/jokes/random?category=${categoryArg}`
+        );
+        const data = await resp.json();
+
+        if (impersonatorArg === "") {
+          return data.value;
+        } else {
+          let replaceImpresonator = await data.value.replaceAll(
+            "Chuck Norris",
+            impersonatorArg
+          );
+          return replaceImpresonator;
+        }
+      } else {
+        const resp = await fetch(`https://api.chucknorris.io/jokes/random`);
+        const data = await resp.json();
+        if (impersonatorArg === "") {
+          return data.value;
+        } else {
+          let replaceImpresonator = data.value.replaceAll(
+            "Chuck Norris",
+            impersonatorArg
+          );
+          return replaceImpresonator;
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      throw error;
     }
+  }
+
+  const handleImageChange = async () => {
+    setJoke(await fetchData(jokeCategory, impersonator));
 
     if (impersonator === "") {
       setChuckImage(true);
     } else setChuckImage(false);
-    // handleSetImpersonator("");
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleImageChange();
+    }
   };
 
   return (
@@ -109,6 +123,7 @@ export const Inputs: FunctionComponent<InputsProps> = ({
         placeholder="Impersonate Chuck Norris"
         value={impersonator}
         onChange={(e) => handleSetImpersonator(e.target.value)}
+        onKeyDown={handleKeyDown}
       ></input>
       {impersonator === "" ? (
         <button onClick={handleImageChange}>
@@ -119,6 +134,7 @@ export const Inputs: FunctionComponent<InputsProps> = ({
           Draw a random {impersonator} joke
         </button>
       )}
+      <Save jokeCategory={jokeCategory} impersonator={impersonator} />
     </>
   );
 };
