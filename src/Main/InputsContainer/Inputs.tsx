@@ -81,7 +81,7 @@ export const Inputs: FunctionComponent<InputsProps> = ({
     if (impersonator === "") {
       setChuckImage(true);
     } else setChuckImage(false);
-    handleSetImpersonator("");
+    // handleSetImpersonator("");
   };
 
   return (
