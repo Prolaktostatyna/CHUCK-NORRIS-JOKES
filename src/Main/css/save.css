@@ -1,0 +1,106 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between
+}
+
+.backgroundCounter {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: var(--gray-2);
+    background-color: var(--gray-2);
+    color: var(--dark);
+    box-sizing: border-box;
+    padding: 15px 10px;
+    width: 37%;
+    line-height: 13px;
+}
+
+span {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+
+.minusBtn {
+    border: 2px solid var(--dark);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 35px;
+}
+
+.counter {
+    width: 40px;
+    margin-top: 4px;
+    font-size: 18px;
+}
+
+.plusBtn {
+    border: 2px solid var(--dark);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.saveJokeBtnNull {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: var(--gray-2);
+    background-color: var(--gray-2);
+    color: var(--dark);
+    box-sizing: border-box;
+    padding: 15px 10px;
+    width: 61%;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.saveJokeBtnFill {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: var(--dark);
+    background-color: var(--dark);
+    color: var(--gray-2);
+    box-sizing: border-box;
+    padding: 15px 10px;
+    width: 61%;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.jokesInLimit {
+    margin: -17px 0;
+    color: transparent;
+    font-size: 14px;
+}
+
+.jokesAboveLimit {
+    margin: -17px 0;
+    color: var(--red-error);
+    font-size: 14px;
+}
+
+.minusBtnBold {
+    border: 2px solid var(--gray-1);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 35px;
+    background: var(--gray-1);
+    color: var(--dark);
+}
+
+.plusBtnBold {
+    border: 2px solid var(--gray-1);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 25px;
+    background: var(--gray-1);
+    color: var(--dark);
+}

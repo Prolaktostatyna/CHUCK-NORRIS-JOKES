@@ -8,6 +8,7 @@ import React, {
   KeyboardEvent,
 } from "react";
 import { Save } from "../SaveContainer/Save";
+import "../css/inputs.css";
 
 type InputsProps = {
   setChuckImage: Dispatch<SetStateAction<boolean>>;
@@ -20,10 +21,10 @@ export const Inputs: FunctionComponent<InputsProps> = ({
   categories,
   setJoke,
 }) => {
-  const [impersonator, setImpersonator] = useState("");
-  const [placeholder, setPlaceholder] = useState("Category");
-  const [categoryFlag, setCategoryFlag] = useState(true); //hook for handle double click on select
-  const [jokeCategory, setJokeCategory] = useState("");
+  const [impersonator, setImpersonator] = useState<string>("");
+  const [placeholder, setPlaceholder] = useState<string>("Categories");
+  const [categoryFlag, setCategoryFlag] = useState<boolean>(true); //hook for handle double click on select
+  const [jokeCategory, setJokeCategory] = useState<string>("");
 
   const selectRef = useRef<any>(null);
 
@@ -31,7 +32,7 @@ export const Inputs: FunctionComponent<InputsProps> = ({
     document.addEventListener("click", (e) => {
       if (!selectRef.current.contains(e.target) || !categoryFlag) {
         setCategoryFlag(true);
-        setPlaceholder("Category");
+        setPlaceholder("Categories");
       } else if (categoryFlag) {
         setCategoryFlag(false);
         setPlaceholder("Select category");
@@ -102,38 +103,68 @@ export const Inputs: FunctionComponent<InputsProps> = ({
   };
 
   return (
-    <>
+    <div className="inputs">
       <select
+        className="selectCategory"
         ref={selectRef}
         value={jokeCategory}
         onChange={(e) => {
           setJokeCategory(e.target.value);
         }}
       >
-        <option value="1" label={placeholder} hidden>
-          Categories
-        </option>
+        <option
+          className="optionCategoriesPlaceholder"
+          value="1"
+          label={placeholder}
+          hidden
+        ></option>
         {categories.map((categoryElement, index) => {
           return (
-            <option key={index} value={categoryElement}>
+            <option
+              className="optionCategories"
+              key={index}
+              value={categoryElement}
+            >
               {categoryElement}
             </option>
           );
         })}
       </select>
-      <input
-        type="text"
-        placeholder="Impersonate Chuck Norris"
-        value={impersonator}
-        onChange={(e) => handleSetImpersonator(e.target.value)}
-        onKeyDown={handleKeyDown}
-      ></input>
+      <div className="inputWrapper">
+        {impersonator === "" ? (
+          <input
+            className="inputImpersonatorEmpty"
+            type="text"
+            // placeholder="Impersonate Chuck Norris"
+            value={impersonator}
+            onChange={(e) => handleSetImpersonator(e.target.value)}
+            onKeyDown={handleKeyDown}
+          ></input>
+        ) : (
+          <input
+            className="inputImpersonatorFill"
+            type="text"
+            // placeholder="Impersonate Chuck Norris"
+            value={impersonator}
+            onChange={(e) => handleSetImpersonator(e.target.value)}
+            onKeyDown={handleKeyDown}
+          ></input>
+        )}
+        {impersonator === "" ? (
+          <span className="inputImpersonatorMiddle">
+            Impersonate Chuck Norris
+          </span>
+        ) : (
+          <span className="inputImpersonatorUp">Impersonate Chuck Norris</span>
+        )}
+      </div>
+
       {impersonator === "" ? (
-        <button onClick={handleImageChange}>
+        <button className="buttonDrawJoke" onClick={handleImageChange}>
           Draw a random Chuck Norris joke
         </button>
       ) : (
-        <button onClick={handleImageChange}>
+        <button className="buttonDrawJoke" onClick={handleImageChange}>
           Draw a random {impersonator} joke
         </button>
       )}
@@ -142,6 +173,6 @@ export const Inputs: FunctionComponent<InputsProps> = ({
         impersonator={impersonator}
         fetchData={fetchData}
       />
-    </>
+    </div>
   );
 };

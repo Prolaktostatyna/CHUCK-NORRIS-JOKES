@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from "react";
+import "../css/image.css";
 
 type ImageProps = {
   imageLink: string;
@@ -7,7 +8,11 @@ type ImageProps = {
 export const Image: FunctionComponent<ImageProps> = ({ imageLink }) => {
   return (
     <>
-      <img src={require(`../../Images/${imageLink}`)} alt="HeaderImage" />
+      <img
+        className="image"
+        src={require(`../../Images/${imageLink}`)}
+        alt="HeaderImage"
+      />
     </>
   );
 };

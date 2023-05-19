@@ -2,12 +2,13 @@ import React, { useState, useEffect, FunctionComponent, useRef } from "react";
 import { Image } from "./ImageContainer/Image";
 import { Inputs } from "./InputsContainer/Inputs";
 import { Joke } from "./JokeContainer/Joke";
+import "./css/main.css";
 
 export const Main: FunctionComponent = () => {
-  const [chuckImage, setChuckImage] = useState(true);
-  const [joke, setJoke] = useState("");
-  const [categories, setCategories] = useState([]);
-  const dataFetchedRef = useRef(false);
+  const [chuckImage, setChuckImage] = useState<boolean>(true);
+  const [joke, setJoke] = useState<string>("");
+  const [categories, setCategories] = useState<string[]>([]);
+  const dataFetchedRef = useRef<boolean>(false);
 
   useEffect(() => {
     if (dataFetchedRef.current) return;
@@ -34,7 +35,7 @@ export const Main: FunctionComponent = () => {
   }, []);
 
   return (
-    <div>
+    <div className="main">
       <Image imageLink={chuckImage ? "Chuck Norris.JPG" : "Impersonator.JPG"} />
       <Joke joke={joke} />
       <Inputs

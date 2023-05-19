@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from "react";
+import "../css/primaryStyles.css";
 
 type JokeProps = {
   joke: string;
@@ -8,7 +9,7 @@ export const Joke: FunctionComponent<JokeProps> = ({ joke }) => {
   //params: string
   return (
     <>
-      <p>{joke}</p>
+      <p className="Text-Style joke">"{joke}"</p>
     </>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useState, FunctionComponent } from "react";
+import "../css/save.css";
 
 type SaveProps = {
   jokeCategory: string;
@@ -13,7 +14,7 @@ export const Save: FunctionComponent<SaveProps> = ({
 }) => {
   let minNumber = 0;
   let maxNumber = 100;
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState<number>(0);
 
   const handleCounterBtn = (sign: string) => {
     if (sign === "-") {
@@ -42,23 +43,60 @@ export const Save: FunctionComponent<SaveProps> = ({
     link.download = "Jokes.txt";
     link.href = url;
     link.click();
-    console.log(arrayForJoke);
   };
 
   return (
     <>
-      <div>
-        <div className="counter">
-          <span onClick={() => handleCounterBtn("-")}> - </span>
-          <span> {counter} </span>
-          <span onClick={() => handleCounterBtn("+")}> + </span>
-        </div>
-        <button onClick={handleSaveBtn}>Save</button>
+      <div className="wrapper">
+        {counter === 0 ? (
+          <div className="backgroundCounter">
+            <span className="minusBtn" onClick={() => handleCounterBtn("-")}>
+              -
+            </span>
+            <span className="counter"> {counter} </span>
+            <span className="plusBtn" onClick={() => handleCounterBtn("+")}>
+              +
+            </span>
+          </div>
+        ) : counter > 0 && counter < minNumber ? (
+          <div className="backgroundCounter">
+            <span
+              className="minusBtnBold"
+              onClick={() => handleCounterBtn("-")}
+            >
+              -
+            </span>
+            <span className="counter"> {counter} </span>
+            <span className="plusBtnBold" onClick={() => handleCounterBtn("+")}>
+              +
+            </span>
+          </div>
+        ) : (
+          <div className="backgroundCounter">
+            <span className="minusBtnRed" onClick={() => handleCounterBtn("-")}>
+              -
+            </span>
+            <span className="counter"> {counter} </span>
+            <span className="plusBtnRed" onClick={() => handleCounterBtn("+")}>
+              +
+            </span>
+          </div>
+        )}
+
+        {counter === 0 ? (
+          <button className="saveJokeBtnNull " onClick={handleSaveBtn}>
+            Save Jokes
+          </button>
+        ) : (
+          <button className="saveJokeBtnFill " onClick={handleSaveBtn}>
+            Save Jokes
+          </button>
+        )}
       </div>
       {counter <= maxNumber ? (
-        <p></p>
+        <p className="jokesInLimit">In limit</p>
       ) : (
-        <p>You can pick a number from 1 to 100</p>
+        <p className="jokesAboveLimit">You can pick a number from 1 to 100</p>
       )}
     </>
   );

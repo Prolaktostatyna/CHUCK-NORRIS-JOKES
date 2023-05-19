@@ -1,0 +1,31 @@
+:root {
+    --gray-2: #f5f6f8;
+    --white: #fff;
+    --red-error: #f39a9a;
+    --gray-1: #c4c4c4;
+    --dark: #34394f;
+    --spacing-xxs: 4px;
+}
+
+@font-face {
+    font-family: Inter;
+    src: local(Inter-SemiBoldItalic),
+        url(../../Font/inter-semi-bold-italic.ttf) format("woff2"),
+        url(../../Font/inter-semi-bold-italic.ttf) format("woff"),
+        url(../../Font/inter-semi-bold-italic.ttf) format("truetype");
+    font-weight: 600;
+    font-style: italic;
+    font-stretch: normal;
+}
+
+.Text-Style {
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: italic;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: var(--dark);
+}
