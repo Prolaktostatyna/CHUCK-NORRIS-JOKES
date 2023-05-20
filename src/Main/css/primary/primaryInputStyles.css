@@ -1,0 +1,53 @@
+.inputWrapper {
+    width: 100%;
+}
+
+.inputEmpty {
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: var(--gray-1);
+    color: var(--dark);
+    padding: 23px 10px 7px 15px;
+    width: 100%;
+    max-width: 483px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.inputFill {
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: var(--dark);
+    color: var(--dark);
+    padding: 23px 10px 7px 15px;
+    width: 100%;
+    max-width: 483px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.inputPlaceholderMiddle {
+    margin-bottom: 15px;
+    color: var(--gray-1);
+    padding: 15px 7px;
+    font-size: 14px;
+    position: relative;
+    pointer-events: none;
+    left: 10px;
+    top: -50px;
+    transition: .3s ease all;
+}
+
+.inputPlaceholderUp {
+    margin-bottom: 15px;
+    color: var(--gray-1);
+    padding: 15px 10px;
+    font-size: 11px;
+    position: relative;
+    pointer-events: none;
+    left: 7px;
+    top: -63px;
+    transition: .3s ease all;
+}

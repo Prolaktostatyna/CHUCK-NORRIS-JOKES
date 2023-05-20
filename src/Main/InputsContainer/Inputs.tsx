@@ -8,7 +8,10 @@ import React, {
   KeyboardEvent,
 } from "react";
 import { Save } from "../SaveContainer/Save";
+import { ReusableInput } from "../../ReusableComponents/ReusableInput";
 import "../css/inputs.css";
+import "../css/primary/primaryInputStyles.css";
+import "../css/primary/primarySelectStyles.css";
 
 type InputsProps = {
   setChuckImage: Dispatch<SetStateAction<boolean>>;
@@ -130,44 +133,17 @@ export const Inputs: FunctionComponent<InputsProps> = ({
           );
         })}
       </select>
-      <div className="inputWrapper">
-        {impersonator === "" ? (
-          <input
-            className="inputImpersonatorEmpty"
-            type="text"
-            // placeholder="Impersonate Chuck Norris"
-            value={impersonator}
-            onChange={(e) => handleSetImpersonator(e.target.value)}
-            onKeyDown={handleKeyDown}
-          ></input>
-        ) : (
-          <input
-            className="inputImpersonatorFill"
-            type="text"
-            // placeholder="Impersonate Chuck Norris"
-            value={impersonator}
-            onChange={(e) => handleSetImpersonator(e.target.value)}
-            onKeyDown={handleKeyDown}
-          ></input>
-        )}
-        {impersonator === "" ? (
-          <span className="inputImpersonatorMiddle">
-            Impersonate Chuck Norris
-          </span>
-        ) : (
-          <span className="inputImpersonatorUp">Impersonate Chuck Norris</span>
-        )}
-      </div>
+      <ReusableInput
+        handleInputChange={handleSetImpersonator}
+        inputValue={impersonator}
+        handleKeyDown={handleKeyDown}
+      />
+      <button className="buttonDrawJoke" onClick={handleImageChange}>
+        {impersonator === ""
+          ? "Draw a random Chuck Norris Joke"
+          : `Draw a random ${impersonator} Joke`}
+      </button>
 
-      {impersonator === "" ? (
-        <button className="buttonDrawJoke" onClick={handleImageChange}>
-          Draw a random Chuck Norris joke
-        </button>
-      ) : (
-        <button className="buttonDrawJoke" onClick={handleImageChange}>
-          Draw a random {impersonator} joke
-        </button>
-      )}
       <Save
         jokeCategory={jokeCategory}
         impersonator={impersonator}

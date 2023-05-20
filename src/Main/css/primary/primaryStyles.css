@@ -10,9 +10,9 @@
 @font-face {
     font-family: Inter;
     src: local(Inter-SemiBoldItalic),
-        url(../../Font/inter-semi-bold-italic.ttf) format("woff2"),
-        url(../../Font/inter-semi-bold-italic.ttf) format("woff"),
-        url(../../Font/inter-semi-bold-italic.ttf) format("truetype");
+        url(../primary/Font/inter-semi-bold-italic.ttf) format("woff2"),
+        url(../primary/Font/inter-semi-bold-italic.ttf) format("woff"),
+        url(../primary/Font/inter-semi-bold-italic.ttf) format("truetype");
     font-weight: 600;
     font-style: italic;
     font-stretch: normal;

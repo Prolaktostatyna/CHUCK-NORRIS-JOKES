@@ -11,7 +11,6 @@
     border-radius: 5px;
     border-style: solid;
     border-color: var(--gray-2);
-    background-color: var(--gray-2);
     color: var(--dark);
     box-sizing: border-box;
     padding: 15px 10px;
@@ -45,7 +44,7 @@ span {
     font-size: 25px;
 }
 
-.saveJokeBtnNull {
+.noActive {
     margin-top: 10px;
     margin-bottom: 25px;
     border-radius: 5px;
@@ -56,11 +55,10 @@ span {
     box-sizing: border-box;
     padding: 15px 10px;
     width: 61%;
-    cursor: pointer;
     font-size: 15px;
 }
 
-.saveJokeBtnFill {
+.active {
     margin-top: 10px;
     margin-bottom: 25px;
     border-radius: 5px;
@@ -103,4 +101,30 @@ span {
     font-size: 25px;
     background: var(--gray-1);
     color: var(--dark);
+}
+
+.minusBtnRed {
+    border: 2px solid var(--dark);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 35px;
+    background: var(--red-error);
+    color: var(--dark);
+}
+
+.plusBtnRed {
+    border: 2px solid var(--dark);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 25px;
+    background: var(--red-error);
+    color: var(--dark);
+}
+
+.backgroundCounterGray {
+    background-color: var(--gray-2);
+}
+
+.backgroundCounterRed {
+    background-color: var(--red-error);
 }

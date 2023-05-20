@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import "../css/primaryStyles.css";
+import "../css/primary/primaryStyles.css";
 
 type JokeProps = {
   joke: string;
