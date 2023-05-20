@@ -12,9 +12,9 @@ export const Save: FunctionComponent<SaveProps> = ({
   impersonator,
   fetchData,
 }) => {
-  let minNumber = 0;
-  let maxNumber = 100;
-  const [counter, setCounter] = useState<number>(100);
+  let minNumber: number = 0;
+  let maxNumber: number = 100;
+  const [counter, setCounter] = useState<number>(0);
 
   const handleCounterBtn = (sign: string) => {
     if (sign === "-") {
@@ -88,7 +88,13 @@ export const Save: FunctionComponent<SaveProps> = ({
           >
             -
           </span>
-          <span className="counter"> {counter} </span>
+          <input
+            className="counter"
+            type="number"
+            onChange={(e) => setCounter(Number(e.target.value))}
+            value={Number(counter).toString()}
+          />
+          {/* <span className="counter"> {counter} </span> */}
           <span
             className={`plus${classNamesSpan}`}
             onClick={() => handleCounterBtn("+")}
