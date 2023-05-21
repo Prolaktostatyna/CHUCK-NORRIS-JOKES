@@ -3,12 +3,11 @@ import React, {
   SetStateAction,
   Dispatch,
   useState,
-  useEffect,
-  useRef,
   KeyboardEvent,
 } from "react";
 import { Save } from "../SaveContainer/Save";
 import { ReusableInput } from "../../ReusableComponents/ReusableInput";
+import { ReusableSelect } from "../../ReusableComponents/ReusableSelect";
 import "../css/inputs.css";
 import "../css/primary/primaryInputStyles.css";
 import "../css/primary/primarySelectStyles.css";
@@ -25,23 +24,7 @@ export const Inputs: FunctionComponent<InputsProps> = ({
   setJoke,
 }) => {
   const [impersonator, setImpersonator] = useState<string>("");
-  const [placeholder, setPlaceholder] = useState<string>("Categories");
-  const [categoryFlag, setCategoryFlag] = useState<boolean>(true); //hook for handle double click on select
   const [jokeCategory, setJokeCategory] = useState<string>("");
-
-  const selectRef = useRef<any>(null);
-
-  useEffect(() => {
-    document.addEventListener("click", (e) => {
-      if (!selectRef.current.contains(e.target) || !categoryFlag) {
-        setCategoryFlag(true);
-        setPlaceholder("Categories");
-      } else if (categoryFlag) {
-        setCategoryFlag(false);
-        setPlaceholder("Select category");
-      }
-    });
-  }, [categoryFlag]);
 
   const handleSetImpersonator = (value: string) => {
     if (value === "") {
@@ -60,7 +43,7 @@ export const Inputs: FunctionComponent<InputsProps> = ({
     try {
       if (categoryArg !== "") {
         const resp = await fetch(
-          `https://api.chucknorris.io/jokes/random?category=${categoryArg}`
+          `https://api.chucknorris.io/jokes/random?category=${categoryArg.toLowerCase()}`
         );
         const data = await resp.json();
 
@@ -107,32 +90,12 @@ export const Inputs: FunctionComponent<InputsProps> = ({
 
   return (
     <div className="inputs">
-      <select
-        className="selectCategory"
-        ref={selectRef}
-        value={jokeCategory}
-        onChange={(e) => {
-          setJokeCategory(e.target.value);
-        }}
-      >
-        <option
-          className="optionCategoriesPlaceholder"
-          value="1"
-          label={placeholder}
-          hidden
-        ></option>
-        {categories.map((categoryElement, index) => {
-          return (
-            <option
-              className="optionCategories"
-              key={index}
-              value={categoryElement}
-            >
-              {categoryElement}
-            </option>
-          );
-        })}
-      </select>
+      <ReusableSelect
+        dropdownOptions={categories}
+        setValue={setJokeCategory}
+        placeholderOptions={"Categories"}
+        placeholderSelect={"Select category"}
+      />
       <ReusableInput
         handleInputChange={handleSetImpersonator}
         inputValue={impersonator}

@@ -3,6 +3,7 @@
 }
 
 .inputEmpty {
+    margin-top: 15px;
     margin-bottom: 15px;
     border-radius: 5px;
     border-style: solid;
@@ -16,6 +17,7 @@
 }
 
 .inputFill {
+    margin-top: 15px;
     margin-bottom: 15px;
     border-radius: 5px;
     border-style: solid;
