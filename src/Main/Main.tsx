@@ -36,7 +36,8 @@ export const Main: FunctionComponent = () => {
 
   return (
     <div className="main">
-      <Image imageLink={chuckImage ? "Chuck Norris.JPG" : "Impersonator.JPG"} />
+      {/* <Image imageLink={chuckImage ? "Chuck Norris.JPG" : "Impersonator.JPG"} /> */}
+      <Image imageLink={chuckImage ? "chuckNorris" : "impersonator"} />
       <Joke joke={joke} />
       <Inputs
         setChuckImage={setChuckImage}

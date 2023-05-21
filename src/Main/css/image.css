@@ -4,5 +4,16 @@
     border-radius: 2%;
     background-position: center;
     width: 100%;
+    height: 170px;
     max-width: 483px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.chuckNorris {
+    background-image: url('../../Images/Chuck Norris.JPG');
+}
+
+.impersonator {
+    background-image: url('../../Images/Impersonator.JPG');
 }
