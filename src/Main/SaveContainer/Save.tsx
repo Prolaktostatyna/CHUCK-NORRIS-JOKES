@@ -1,4 +1,4 @@
-import React, { useState, FunctionComponent } from "react";
+import React, { useState, FunctionComponent, KeyboardEvent } from "react";
 import "../css/save.css";
 
 type SaveProps = {
@@ -48,6 +48,12 @@ export const Save: FunctionComponent<SaveProps> = ({
       alert("Enter the number of jokes you want to save");
     }
   };
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    console.log("klawisz");
+    if (e.key === "Enter") {
+      handleSaveBtn();
+    }
+  };
 
   //conditioncs for class names and limit alert:
   let classNamesSpan: string[] = [];
@@ -93,6 +99,7 @@ export const Save: FunctionComponent<SaveProps> = ({
             type="number"
             onChange={(e) => setCounter(Number(e.target.value))}
             value={Number(counter).toString()}
+            onKeyDown={handleKeyDown}
           />
           {/* <span className="counter"> {counter} </span> */}
           <span
@@ -102,7 +109,10 @@ export const Save: FunctionComponent<SaveProps> = ({
             +
           </span>
         </div>
-        <button className={`${classNameSaveBtn}`} onClick={handleSaveBtn}>
+        <button
+          className={`saveStyle ${classNameSaveBtn}`}
+          onClick={handleSaveBtn}
+        >
           Save Jokes
         </button>
       </div>

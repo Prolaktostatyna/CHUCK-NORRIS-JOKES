@@ -16,6 +16,7 @@
     padding: 15px 10px;
     width: 37%;
     line-height: 13px;
+
 }
 
 span {
@@ -58,33 +59,29 @@ span {
     font-size: 25px;
 }
 
-.noActive {
+.saveStyle {
     margin-top: 10px;
     margin-bottom: 25px;
     border-radius: 10px;
     border-style: solid;
+    box-sizing: border-box;
+    padding: 15px 10px;
+    font-size: 15px;
+    width: 61%;
+}
+
+.noActive {
     border-color: var(--gray-2);
     background-color: var(--gray-2);
     color: var(--dark);
-    box-sizing: border-box;
-    padding: 15px 10px;
-    width: 61%;
-    font-size: 15px;
+
 }
 
 .active {
-    margin-top: 10px;
-    margin-bottom: 25px;
-    border-radius: 10px;
-    border-style: solid;
     border-color: var(--dark);
     background-color: var(--dark);
     color: var(--gray-2);
-    box-sizing: border-box;
-    padding: 15px 10px;
-    width: 61%;
     cursor: pointer;
-    font-size: 15px;
 }
 
 .jokesInLimit {
@@ -141,4 +138,21 @@ span {
 
 .backgroundCounterRed {
     background-color: var(--red-error);
+}
+
+@media(max-width: 400px) {
+    .backgroundCounter {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .saveStyle {
+        width: 100%;
+    }
+
+    .wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
 }
